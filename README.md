@@ -29,9 +29,9 @@ install [Ganache](https://trufflesuite.com/ganache/) in order to properly run th
 
 ## Compiling and running
 
-First, one must open ganache and create a new Ganache workspace. It is easiest to simply quickstart a workspace and name it later. ![Here]() is what my current workspace looks like in ganache. After you open a new workspace, you should see something that looks like ![this](). Note that all these accounts should have 100.00 Etherium as nothing has been added or changed from this local network.
+First, one must open ganache and create a new Ganache workspace. It is easiest to simply quickstart a workspace and name it later. [Here](https://github.com/bcm101/blockchain-auction/blob/main/images/ganacheUI.png) is what my current workspace looks like in ganache. After you open a new workspace, you should see something that looks like [this](https://github.com/bcm101/blockchain-auction/blob/main/images/GanacheNewWorkSpace.png). Note that all these accounts should have 100.00 Etherium as nothing has been added or changed from this local network.
 
-Next one should open the code to the file ```truffle-config.js``` where you will see an object being exported called network. You should make sure this section will match the RPC server described in ganache in the top of the screen.
+Next one should open the code to the file ```truffle-config.js``` where you will see an object being exported called network that looks like [this](https://github.com/bcm101/blockchain-auction/blob/main/images/truffleConfig.png). You should make sure this section will match the RPC server described in ganache in the top of the screen.
 
 Next, one must open the console to the home directory of the project again and compile the contracts using truffle:
 
