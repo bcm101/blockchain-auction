@@ -59,6 +59,48 @@ to interact with this using web3js console type:
 truffle console
 ```
 
+## Truffle Console
+
+Now that you have a console open, you can create an instance of the contract in question:
+
+```javascript
+const auction = await Auction.deployed()
+```
+
+To get a list of all accounts:
+
+```javascript
+const accounts = await web3.eth.getAccounts()
+accounts
+```
+
+A method from the smart contract can be used in web3. Every method from the smart contract has set number of parameters, however web3 methods will accept one extra parameter at the end that will specify details about how the method should be handled.
+
+```
+{from: [which account is calling this method], 
+value: [only for payable function, how much wei to send],
+...}
+```
+
+The first account is default going to be the owner of the contract, so any functions labeled _ownerOnly will only be able to be called by account[0].
+To specify a method to come from an account that isn't default, pass the aforementioned object with ```{from: [sepperate account]}``` 
+
+### Making a bid:
+
+```javascript
+auction.createBid({from: accounts[1], value: web3.utils.toWei('3', 'ether')}
+```
+
+You should see the update in ganache, as the second account has just placed a bid of 3 ether.
+
+### Withdrawing
+
+Withdrawing can only be done after the auction has ended! By default an auction will take exactly 1 hour. An Auction can be ended earlier if the owner ends it using the endAuction method.
+
+```javascript
+auction.withdrawYourBid({from: accounts[1]}
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
