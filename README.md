@@ -96,7 +96,7 @@ value: [only for payable function, how much wei to send],
 ### Making a bid:
 
 ```javascript
-auction.createBid({from: accounts[1], value: web3.utils.toWei('3', 'ether')}
+auction.createBid({from: accounts[1], value: web3.utils.toWei('3', 'ether')})
 ```
 
 You should see the update in ganache, as the second account has just placed a bid of 3 ether.
