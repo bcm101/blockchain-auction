@@ -85,6 +85,14 @@ value: [only for payable function, how much wei to send],
 The first account is default going to be the owner of the contract, so any functions labeled ```_ownerOnly``` will only be able to be called by ```account[0]```.
 To specify a method to come from an account that isn't default, pass the aforementioned object with ```{from: [sepperate account]}```.
 
+## Methods
+
+Note that if you take too long to try some of these methods, they might be locked out due to the auction ending as each auction has a time limit. You can get around this by redeploying the contract (a more elegant solution is in the works but not a main prioritiy for now)
+
+```bash
+truffle migrate --reset
+```
+
 ### Making a bid:
 
 ```javascript
