@@ -74,14 +74,6 @@ const accounts = await web3.eth.getAccounts()
 accounts
 ```
 
-A method from the smart contract can be used in using web3 in the console. Every method from the smart contract has set number of parameters, however web3 methods will accept one extra parameter at the end that will specify details about how the method should be handled.
-
-```
-{from: [which account is calling this method], 
-value: [only for payable function, how much wei to send],
-...}
-```
-
 The first account is default going to be the owner of the contract, so any functions labeled ```_ownerOnly``` will only be able to be called by ```account[0]```.
 To specify a method to come from an account that isn't default, pass the aforementioned object with ```{from: [sepperate account]}```.
 
@@ -91,6 +83,14 @@ Note that if you take too long to try some of these methods, they might be locke
 
 ```bash
 truffle migrate --reset
+```
+
+A method from the smart contract can be used in using web3 in the console. Every method from the smart contract has set number of parameters, however web3 methods will accept one extra parameter at the end that will specify details about how the method should be handled.
+
+```
+{from: [which account is calling this method], 
+value: [only for payable function, how much wei to send],
+...}
 ```
 
 ### Making a bid:
@@ -106,7 +106,24 @@ You should see the update in ganache, as the second account has just placed a bi
 Withdrawing can only be done after the auction has ended! By default an auction will take exactly 1 hour. An auction can be ended earlier if the owner ends it using the ```endAuction``` method.
 
 ```javascript
-auction.withdrawYourBid({from: accounts[1]}
+auction.withdrawYourBid({from: accounts[1]})
+```
+
+### Get your current bid
+
+```javascript
+let yourBid = await auction.getYourBid({from: accounts[1]})
+yourBid.toString()
+```
+
+Any numeric returns will be of the type BigNumber, which must be converted to a regular javascript number using ```toNumber```. However, this is sometimes not possible due to how large the number is. Therefore, ```toString``` will also work.
+
+### _ownerOnly functions
+
+Owner only functions must be done only when you are using the owner account. This is most likely the account ```accounts[0]```. An example would be to end the auction, one would use this:
+
+```javascript
+auction.endAuction({from: accounts[0]})
 ```
 
 ## Contributing
